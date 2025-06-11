@@ -5,11 +5,11 @@ namespace UnitTests;
 public class ChildUnitTests
 {
     [Fact]
-    public void GivenANumber_WhenCreatingAList_AListOfChildrenIsReturned()
+    public void GivenATotal_WhenCreatingAList_TheCorrectListOfChildrenIsReturned()
     {
         //Arrange
-        var childData = 2;
-        var childList = new Child();
+        const int childData = 2;
+        var childList = new ChildList();
         
         //Act
         var expected = new List<string>{"Child 1", "Child 2"};

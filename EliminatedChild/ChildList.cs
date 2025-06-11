@@ -1,6 +1,6 @@
 ﻿namespace EliminatedChild;
 
-public class Child : IChild
+public class ChildList : IChildList
 {
     public List<string> ListToUse(int childTotal)
     {

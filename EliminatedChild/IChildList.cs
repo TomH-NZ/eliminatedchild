@@ -1,6 +1,6 @@
 ﻿namespace EliminatedChild;
 
-public interface IChild
+public interface IChildList
 {
     List<string> ListToUse(int childTotal);
 }
