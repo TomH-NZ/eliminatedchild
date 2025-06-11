@@ -19,7 +19,7 @@ public class Api : IApi
         {
             Id = 1,
             ChildCount = 7,
-            EliminatedChild = 13
+            EliminatedChild = 4
         };
 
         return childData;
