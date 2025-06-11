@@ -18,4 +18,17 @@ public class ChildUnitTests
         //Assert
         Assert.Equal(expected, result);
     }
+
+    [Fact]
+    public void GivenABlankList_WhenAddingAChild_TheCorrectLengthIsReturned()
+    {
+        //Arrange
+        var child = new ChildList();
+        
+        //Act
+        child.eliminatedChildrenList.Add("Child 1");
+        
+        //Assert
+        Assert.Single(child.eliminatedChildrenList);
+    }
 }

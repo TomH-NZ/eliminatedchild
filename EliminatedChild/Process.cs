@@ -4,7 +4,6 @@ public class Process
 {
     static Data _data = new Api().GetChildDataAsync();
     static ChildList _child = new ChildList();
-    List<string> _eliminatedChildrenList = [];
 
     int _childToRemove = _data.EliminatedChild;
     int startingChild;
@@ -15,7 +14,7 @@ public class Process
         while (_childrenToEliminate.Count > 1)
         {
             //ToDo
-            //Add logic to remove child at childToRemove, set startingChild to be the next child in the list, add removed child to eliminatedChildList.
+            //Add logic to remove child at childToRemove, set startingChild to be the next child in the list, add removed child to _child.eliminatedChildList.
             //Use modulus for calculation, print remainder at end.
             //Add unit tests.
             //Add working API.

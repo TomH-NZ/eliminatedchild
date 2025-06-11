@@ -12,4 +12,6 @@ public class ChildList : IChildList
         }
         return childList;
     }
+
+    public List<string> eliminatedChildrenList = [];
 }
