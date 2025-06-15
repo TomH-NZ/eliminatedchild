@@ -2,5 +2,5 @@
 
 public interface IApi
 {
-    Data GetChildDataAsync();
+    DataObject GetChildDataAsync();
 }

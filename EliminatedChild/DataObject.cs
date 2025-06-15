@@ -1,6 +1,6 @@
 ﻿namespace EliminatedChild;
 
-public class Data
+public class DataObject
 {
     public int Id { get; set; }
     public int ChildCount { get; set; }

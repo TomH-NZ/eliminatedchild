@@ -1,15 +1,14 @@
-﻿using System.Linq;
-
+﻿
 namespace EliminatedChild;
 
 public class Process
 {
-    static Data _data = new Api().GetChildDataAsync();
-    static ChildList _child = new ChildList();
+    static DataObject _childData = new Api().GetChildDataAsync();
+    static ChildList _child = new();
 
-    int _childToRemove = _data.EliminatedChild;
+    int _childToRemove = _childData.EliminatedChild;
     int startingChild;
-    List<string> _childrenToEliminate = _child.ListToUse(_data.ChildCount);
+    List<string> _childrenToEliminate = _child.ListToUse(_childData.ChildCount);
 
     public void RemoveChild()
     {
@@ -17,20 +16,27 @@ public class Process
         {
             var eliminationCount = _childToRemove % _childrenToEliminate.Count;
 
+            if (startingChild + eliminationCount > _childrenToEliminate.Count)
+            {
+                startingChild = startingChild + eliminationCount - _childrenToEliminate.Count;
+                
+            }
+
             if (eliminationCount < _childrenToEliminate.Count)
             {
                 _child.eliminatedChildrenList.Add(_childrenToEliminate[eliminationCount]);
                 _childrenToEliminate.RemoveAt(eliminationCount);
                 startingChild = eliminationCount + 1;
             }
-            
-
-
-            //ToDo
-            //Add logic to remove child at childToRemove, set startingChild to be the next child in the list, add removed child to _child.eliminatedChildList.
-            //Use modulus for calculation, print remainder at end.
-            //Add unit tests.
-            //Add working API.
         }
+        
+        Console.WriteLine($"The game is {_childData.Id}");
+        Console.WriteLine($"The winning child is {_childrenToEliminate[0]}");
     }
+    
+    //ToDo
+    //Add logic to remove child at childToRemove, set startingChild to be the next child in the list, add removed child to _child.eliminatedChildList.
+    //Use modulus for calculation, print remainder at end.
+    //Add unit tests.
+    //Add working API.
 }

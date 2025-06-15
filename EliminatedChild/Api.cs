@@ -13,12 +13,12 @@ public class Api : IApi
         return JsonSerializer.Deserialize<Data>(jsonResponse);
     }*/
 
-    public Data GetChildDataAsync()
+    public DataObject GetChildDataAsync()
     {
-        var childData = new Data
+        var childData = new DataObject
         {
             Id = 1,
-            ChildCount = 7,
+            ChildCount = 2,
             EliminatedChild = 4
         };
 
