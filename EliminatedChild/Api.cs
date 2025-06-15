@@ -1,22 +1,16 @@
-﻿namespace EliminatedChild;
+﻿using System.Text.Json.Nodes;
+
+namespace EliminatedChild;
+
+//URL = "https://7annld7mde.execute-api.ap-southeast2.amazonaws.com/main/game"
 
 public class Api : IApi
 {
-
-    /*public static async Task<Data> GetChildDataAsync()
-    {
-        const string apiUrl = "https://7annld7mde.execute-api.ap-southeast2.amazonaws.com/main/game";
-
-        using HttpClient apiClient = new();
-        var jsonResponse = await apiClient.GetStringAsync(apiUrl);
-
-        return JsonSerializer.Deserialize<Data>(jsonResponse);
-    }*/
-
     public DataObject GetChildDataAsync()
     {
-        var childData = new DataObject
-        {
+        
+        DataObject childData = new()
+            {
             Id = 1,
             ChildCount = 4,
             EliminatedChild = 4

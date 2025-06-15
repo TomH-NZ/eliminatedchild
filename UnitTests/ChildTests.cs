@@ -2,7 +2,7 @@
 
 namespace UnitTests;
 
-public class ChildUnitTests
+public class ChildTests
 {
     private ChildList _childList = new();
     
