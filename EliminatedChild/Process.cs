@@ -4,34 +4,41 @@ namespace EliminatedChild;
 public class Process
 {
     static DataObject _childData = new Api().GetChildDataAsync();
-    static ChildList _child = new();
+    static ChildList _childList = new();
 
     int _childToRemove = _childData.EliminatedChild;
-    int startingChild;
-    List<string> _childrenToEliminate = _child.ListToUse(_childData.ChildCount);
+    int _startingChild;
+    List<string> _listToRemoveFrom = _childList.ListToUse(_childData.ChildCount);
 
     public void RemoveChild()
     {
-        while (_childrenToEliminate.Count > 1)
+        while (_listToRemoveFrom.Count > 1)
         {
-            var eliminationCount = _childToRemove % _childrenToEliminate.Count;
+            var childrenToCountThrough = _childToRemove % _listToRemoveFrom.Count;
 
-            if (startingChild + eliminationCount > _childrenToEliminate.Count)
+            if (_startingChild + childrenToCountThrough > _listToRemoveFrom.Count)
             {
-                startingChild = startingChild + eliminationCount - _childrenToEliminate.Count;
+                _startingChild = _startingChild + childrenToCountThrough - _listToRemoveFrom.Count;
                 
             }
 
-            if (eliminationCount < _childrenToEliminate.Count)
+            if (_childToRemove % _listToRemoveFrom.Count == 0)
             {
-                _child.EliminatedChildrenList.Add(_childrenToEliminate[eliminationCount]);
-                _childrenToEliminate.RemoveAt(eliminationCount);
-                startingChild = eliminationCount + 1;
+                _childList.EliminatedChildrenList.Add(_listToRemoveFrom[^1]);
+                _listToRemoveFrom.RemoveAt(_listToRemoveFrom.Count - 1);
+                _startingChild = 0;
+            }
+
+            else if (childrenToCountThrough < _listToRemoveFrom.Count)
+            {
+                _childList.EliminatedChildrenList.Add(_listToRemoveFrom[childrenToCountThrough - 1]);
+                _listToRemoveFrom.RemoveAt(childrenToCountThrough - 1);
+                _startingChild = childrenToCountThrough + 1;
             }
         }
         
         Console.WriteLine($"The game is {_childData.Id}");
-        Console.WriteLine($"The winning child is {_childrenToEliminate[0]}");
+        Console.WriteLine($"The winning child is {_listToRemoveFrom[0]}");
     }
     
     //ToDo
