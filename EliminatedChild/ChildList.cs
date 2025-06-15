@@ -13,5 +13,5 @@ public class ChildList : IChildList
         return childList;
     }
 
-    public List<string> eliminatedChildrenList = new List<string>();
+    public List<string> EliminatedChildrenList = [];
 }

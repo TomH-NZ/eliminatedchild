@@ -24,7 +24,7 @@ public class Process
 
             if (eliminationCount < _childrenToEliminate.Count)
             {
-                _child.eliminatedChildrenList.Add(_childrenToEliminate[eliminationCount]);
+                _child.EliminatedChildrenList.Add(_childrenToEliminate[eliminationCount]);
                 _childrenToEliminate.RemoveAt(eliminationCount);
                 startingChild = eliminationCount + 1;
             }
@@ -35,8 +35,6 @@ public class Process
     }
     
     //ToDo
-    //Add logic to remove child at childToRemove, set startingChild to be the next child in the list, add removed child to _child.eliminatedChildList.
-    //Use modulus for calculation, print remainder at end.
     //Add unit tests.
     //Add working API.
 }

@@ -18,7 +18,7 @@ public class Api : IApi
         var childData = new DataObject
         {
             Id = 1,
-            ChildCount = 2,
+            ChildCount = 4,
             EliminatedChild = 4
         };
 
