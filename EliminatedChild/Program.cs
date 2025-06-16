@@ -2,8 +2,10 @@
 
 using EliminatedChild;
 
-//Console.WriteLine("Hello, World!");
+IChildList childList = new ChildList();
+IApi childApi = new Api();
 
+var childData = childApi.GetChildDataAsync();
 var childGame = new Process();
 
-childGame.RemoveChild();
+childGame.RemoveChild(childData, childList);

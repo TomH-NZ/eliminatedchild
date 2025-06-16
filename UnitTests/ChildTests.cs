@@ -24,12 +24,13 @@ public class ChildTests
     public void GivenABlankList_WhenAddingAChild_TheCorrectLengthIsReturned()
     {
         //Arrange
+        var eliminatedChildrenList = _childList.EliminatedChildrenList();
         
         //Act
-        _childList.EliminatedChildrenList.Add("Child 1");
+        eliminatedChildrenList.Add("Child 1");
         
         //Assert
-        Assert.Single(_childList.EliminatedChildrenList);
+        Assert.Single(eliminatedChildrenList);
     }
 
     [Theory]

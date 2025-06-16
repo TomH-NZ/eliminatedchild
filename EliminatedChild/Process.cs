@@ -1,44 +1,43 @@
 ﻿
 namespace EliminatedChild;
 
-public class Process
+public class Process 
 {
-    static DataObject _childData = new Api().GetChildDataAsync();
-    static ChildList _childList = new();
-
-    int _childToRemove = _childData.EliminatedChild;
-    int _startingChild;
-    List<string> _listToRemoveFrom = _childList.ListToUse(_childData.ChildCount);
-
-    public void RemoveChild()
+    public void RemoveChild(DataObject childData, IChildList childList)
     {
-        while (_listToRemoveFrom.Count > 1)
+        
+        var listToRemoveFrom = childList.ListToUse(childData.ChildCount);
+        var eliminatedChildrenList = childList.EliminatedChildrenList();
+        var childToRemove = childData.EliminatedChild;
+        var startingChild = 0;
+        
+        while (listToRemoveFrom.Count > 1)
         {
-            var childrenToCountThrough = _childToRemove % _listToRemoveFrom.Count;
+            var childrenToCountThrough = childToRemove % listToRemoveFrom.Count;
 
-            if (_startingChild + childrenToCountThrough > _listToRemoveFrom.Count)
+            if (startingChild + childrenToCountThrough > listToRemoveFrom.Count)
             {
-                _startingChild = _startingChild + childrenToCountThrough - _listToRemoveFrom.Count;
+                startingChild = startingChild + childrenToCountThrough - listToRemoveFrom.Count;
                 
             }
 
-            if (_childToRemove % _listToRemoveFrom.Count == 0)
+            if (childToRemove % listToRemoveFrom.Count == 0)
             {
-                _childList.EliminatedChildrenList.Add(_listToRemoveFrom[^1]);
-                _listToRemoveFrom.RemoveAt(_listToRemoveFrom.Count - 1);
-                _startingChild = 0;
+                eliminatedChildrenList.Add(listToRemoveFrom[^1]);
+                listToRemoveFrom.RemoveAt(listToRemoveFrom.Count - 1);
+                startingChild = 0;
             }
 
-            else if (childrenToCountThrough < _listToRemoveFrom.Count)
+            else if (childrenToCountThrough < listToRemoveFrom.Count)
             {
-                _childList.EliminatedChildrenList.Add(_listToRemoveFrom[childrenToCountThrough - 1]);
-                _listToRemoveFrom.RemoveAt(childrenToCountThrough - 1);
-                _startingChild = childrenToCountThrough + 1;
+                eliminatedChildrenList.Add(listToRemoveFrom[childrenToCountThrough - 1]);
+                listToRemoveFrom.RemoveAt(childrenToCountThrough - 1);
+                startingChild = childrenToCountThrough + 1;
             }
         }
         
-        Console.WriteLine($"The game is {_childData.Id}");
-        Console.WriteLine($"The winning child is {_listToRemoveFrom[0]}");
+        Console.WriteLine($"The game is {childData.Id}");
+        Console.WriteLine($"The winning child is {listToRemoveFrom[0]}");
     }
     
     //ToDo
