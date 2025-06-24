@@ -10,34 +10,40 @@ public class Process
         var eliminatedChildrenList = childList.EliminatedChildrenList();
         var childToRemove = childData.EliminatedChild;
         var startingChild = 0;
-        
-        while (listToRemoveFrom.Count > 1)
+
+        try
         {
-            var childrenToCountThrough = childToRemove % listToRemoveFrom.Count;
-
-            if (startingChild + childrenToCountThrough > listToRemoveFrom.Count)
+            while (listToRemoveFrom.Count > 1)
             {
-                startingChild = startingChild + childrenToCountThrough - listToRemoveFrom.Count;
-                
-            }
+                var childrenToCountThrough = childToRemove % listToRemoveFrom.Count;
 
-            if (childToRemove % listToRemoveFrom.Count == 0)
-            {
-                eliminatedChildrenList.Add(listToRemoveFrom[^1]);
-                listToRemoveFrom.RemoveAt(listToRemoveFrom.Count - 1);
-                startingChild = 0;
-            }
+                if (startingChild + childrenToCountThrough > listToRemoveFrom.Count)
+                {
+                    startingChild = startingChild + childrenToCountThrough - listToRemoveFrom.Count;
 
-            else if (childrenToCountThrough < listToRemoveFrom.Count)
-            {
-                eliminatedChildrenList.Add(listToRemoveFrom[childrenToCountThrough - 1]);
-                listToRemoveFrom.RemoveAt(childrenToCountThrough - 1);
-                startingChild = childrenToCountThrough + 1;
+                }
+
+                if (childToRemove % listToRemoveFrom.Count == 0)
+                {
+                    eliminatedChildrenList.Add(listToRemoveFrom[^1]);
+                    listToRemoveFrom.RemoveAt(listToRemoveFrom.Count - 1);
+                    startingChild = 0;
+                }
+
+                else if (childrenToCountThrough < listToRemoveFrom.Count)
+                {
+                    eliminatedChildrenList.Add(listToRemoveFrom[childrenToCountThrough - 1]);
+                    listToRemoveFrom.RemoveAt(childrenToCountThrough - 1);
+                    startingChild = childrenToCountThrough + 1;
+                }
+
+                Console.WriteLine($"The game number is {childData.Id} /n The winning child is {listToRemoveFrom[0]}");
             }
         }
-        
-        Console.WriteLine($"The game is {childData.Id}");
-        Console.WriteLine($"The winning child is {listToRemoveFrom[0]}");
+        catch (ArgumentException e)
+        {
+            Console.WriteLine(e.Message);
+        }
     }
     
     //ToDo
