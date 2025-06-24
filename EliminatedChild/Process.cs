@@ -36,9 +36,9 @@ public class Process
                     listToRemoveFrom.RemoveAt(childrenToCountThrough - 1);
                     startingChild = childrenToCountThrough + 1;
                 }
-
-                Console.WriteLine($"The game number is {childData.Id} /n The winning child is {listToRemoveFrom[0]}");
             }
+            Console.WriteLine($"The game is {childData.Id}");
+            Console.WriteLine($"The winning child is {listToRemoveFrom[0]}");
         }
         catch (ArgumentException e)
         {
